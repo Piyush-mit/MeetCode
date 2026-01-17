@@ -17,7 +17,12 @@ if(ENV.NODE_ENV == "production"){
         res.sendFile(path.join(__dirname , "../frontend", "dist" , "index.html"));
     })
 }
-app.listen(ENV.PORT , () => {
-    console.log("Server active on port" , ENV.PORT);
-})
+const startServer = async () => {
+    try {
+        app.listen(ENV.PORT , () => console.log("Server active on port" , ENV.PORT))
+    } catch (error) {
+        console.error("Error starting the server", error);
+    }
+}
 
+startServer();
